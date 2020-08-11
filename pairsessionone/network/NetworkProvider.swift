@@ -13,13 +13,39 @@ enum HTTPMethod: String {
 }
 
 protocol EndpointType {
-    var path: URL? { get }
+    var path: String { get }
     var header: [String: String]? { get }
     var method: HTTPMethod { get }
-    var params: [String: Any?]? { get }
+    var params:  [URLQueryItem] { get }
+    var host: String { get }
+    var scheme: String { get }
 }
 
-extension EndpointType {
+enum MusicProvider: EndpointType {
+    
+    case searchMusic(query: String)
+    
+    var scheme: String {
+        switch self {
+        case .searchMusic(_):
+            return "https"
+        }
+    }
+    
+    var host: String {
+        switch self {
+        case .searchMusic(_):
+            return "itunes.apple.com"
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .searchMusic(_):
+            return "/search"
+        }
+    }
+    
     var method: HTTPMethod {
         return .get
     }
@@ -28,47 +54,12 @@ extension EndpointType {
         return nil
     }
     
-    var params: [String: Any?]? {
-        return nil
-    }
-}
-
-
-enum MusicEndpoint {
-    case searchPath(searchTerm: String)
-}
-
-protocol NetworkProviderProtocol {
-    func getSearchURL(searchQuery: String) -> URL?
-}
-
-class NetworkProvider {
-    
-    typealias SuccessResult = (SearchResult) -> Void
-    typealias ErrorResult = (Error?) -> Void
-    
-    func getTestData(trackSearch: String, onSuccess: @escaping SuccessResult, onError: @escaping ErrorResult) {
-        guard let url = getSearchURL(searchQuery: trackSearch) else {
-            onError(nil)
-            return
+    var params: [URLQueryItem] {
+        switch self {
+        case .searchMusic(let searchQuery):
+            return [URLQueryItem(name: "term", value: searchQuery),
+                    URLQueryItem(name: "mediaType", value: "music"),
+                    URLQueryItem(name: "limit", value: "20")]
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data,
-                let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data) else {
-                    onError(error)
-                    return
-            }
-            onSuccess(searchResult)
-        }
-        task.resume()
-    }
-    
-    func getSearchURL(searchQuery: String) -> URL? {
-        let baseURL = "https://itunes.apple.com/search"
-        var components = URLComponents(string: baseURL)
-        components?.queryItems = [URLQueryItem(name: "term", value: searchQuery),
-                                  URLQueryItem(name: "mediaType", value: "music"),
-                                  URLQueryItem(name: "limit", value: "20")]
-        return components?.url
     }
 }

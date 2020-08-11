@@ -10,8 +10,7 @@ import UIKit
 import AVFoundation
 
 class MusicSearchViewController: UIViewController {
-
-    var provider = NetworkProvider()
+    
     var player = AVPlayer()
     
     lazy var tableview: UITableView = {
@@ -43,20 +42,40 @@ class MusicSearchViewController: UIViewController {
         player.volume = 0.2
         player.play()
     }
-}
-
-extension MusicSearchViewController: UISearchBarDelegate, UISearchResultsUpdating {
     
-    func updateSearchResults(for searchController: UISearchController) { }
+    private func handleSearchs(with query: String) {
+        NetworkLayer.request(provider: .searchMusic(query: query)) { (result: Result<SearchResult, Error>)  in
+            switch result {
+            case .success(let searchResult):
+                print(searchResult)
+                self.playPreview(url: searchResult.tracks?.first?.previewUrl)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else { return }
-        provider.getTestData(trackSearch: query, onSuccess: { searchResult in
-            print(searchResult.tracks?.first?.trackName)
-            self.playPreview(url: searchResult.tracks?.first?.previewUrl)
-        }, onError: { error in
-            print(error?.localizedDescription)
-        })
+    @objc func reload(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text, !query.isEmpty else {
+            player.pause()
+            print("Nothing to play")
+            return
+        }
+        handleSearchs(with: query)
     }
 }
 
+extension MusicSearchViewController: UISearchBarDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
+        handleSearchs(with: query)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.5)
+    }
+}
