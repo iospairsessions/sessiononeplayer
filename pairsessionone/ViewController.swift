@@ -11,14 +11,21 @@ import AVFoundation
 
 class MusicSearchViewController: UIViewController {
     
+    enum Section: CaseIterable {
+        case songs
+    }
+    
     var player = AVPlayer()
     
-    lazy var tableview: UITableView = {
-        let table = UITableView()
-        table.frame = UIScreen.main.bounds
-        view.addSubview(table)
-        return table
+    private lazy var collectionView: UICollectionView = {
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout())
+        collection.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: "MusicCollectionViewCell")
+        collection.delegate = self
+        collection.dataSource = makeDataSource()
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,16 @@ class MusicSearchViewController: UIViewController {
         player.rate = 1.0
         player.volume = 0.2
         player.play()
+    }
+
+    private func collectionLayout () -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     private func handleSearchs(with query: String) {
@@ -77,5 +94,29 @@ extension MusicSearchViewController: UISearchBarDelegate, UISearchResultsUpdatin
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
         perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.5)
+    }
+}
+
+extension MusicSearchViewController: UICollectionViewDelegate {
+    
+}
+
+private extension MusicSearchViewController {
+    
+    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Results> {
+        let reuseIdentifier = "MusicCollectionViewCell"
+        return UICollectionViewDiffableDataSource(
+            collectionView: collectionView,
+            cellProvider: {  collectionView, indexPath, song in
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: reuseIdentifier,
+                    for: indexPath
+                    ) as? MusicCollectionViewCell else {
+                        return UICollectionViewCell()
+                }
+                cell.setSong(song)
+                return cell
+        }
+        )
     }
 }

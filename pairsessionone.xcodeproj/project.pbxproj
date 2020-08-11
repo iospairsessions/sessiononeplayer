@@ -18,6 +18,7 @@
 		186D89EE24DA0CB300D22A46 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89EC24DA0CB300D22A46 /* SearchResult.swift */; };
 		186D89F124DA0DCE00D22A46 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89F024DA0DCE00D22A46 /* NetworkProvider.swift */; };
 		1C2E679024E222A400D397F5 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E678F24E222A400D397F5 /* NetworkLayer.swift */; };
+		1C8FE7E124E34F020071C134 /* MusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8FE7E024E34F020071C134 /* MusicCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		186D89EC24DA0CB300D22A46 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		186D89F024DA0DCE00D22A46 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		1C2E678F24E222A400D397F5 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
+		1C8FE7E024E34F020071C134 /* MusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		186D89B924DA0C8A00D22A46 /* pairsessionone */ = {
 			isa = PBXGroup;
 			children = (
+				1C8FE7DE24E34ED80071C134 /* Views */,
 				186D89EF24DA0DC300D22A46 /* network */,
 				186D89EA24DA0CA500D22A46 /* codable */,
 				186D89BA24DA0C8A00D22A46 /* AppDelegate.swift */,
@@ -151,6 +154,22 @@
 				1C2E678F24E222A400D397F5 /* NetworkLayer.swift */,
 			);
 			path = network;
+			sourceTree = "<group>";
+		};
+		1C8FE7DE24E34ED80071C134 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1C8FE7DF24E34EE20071C134 /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1C8FE7DF24E34EE20071C134 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1C8FE7E024E34F020071C134 /* MusicCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C8FE7E124E34F020071C134 /* MusicCollectionViewCell.swift in Sources */,
 				1C2E679024E222A400D397F5 /* NetworkLayer.swift in Sources */,
 				186D89BF24DA0C8A00D22A46 /* ViewController.swift in Sources */,
 				186D89BB24DA0C8A00D22A46 /* AppDelegate.swift in Sources */,

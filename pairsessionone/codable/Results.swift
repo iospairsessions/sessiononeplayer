@@ -13,7 +13,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 
-struct Results : Codable {
+struct Results : Codable, Hashable {
 	let wrapperType : String?
 	let kind : String?
 	let artistId : Int?
