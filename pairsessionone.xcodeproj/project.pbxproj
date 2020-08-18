@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		186D89BB24DA0C8A00D22A46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89BA24DA0C8A00D22A46 /* AppDelegate.swift */; };
 		186D89BD24DA0C8A00D22A46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89BC24DA0C8A00D22A46 /* SceneDelegate.swift */; };
-		186D89BF24DA0C8A00D22A46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89BE24DA0C8A00D22A46 /* ViewController.swift */; };
+		186D89BF24DA0C8A00D22A46 /* MusicSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89BE24DA0C8A00D22A46 /* MusicSearchViewModel.swift */; };
 		186D89C424DA0C8D00D22A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 186D89C324DA0C8D00D22A46 /* Assets.xcassets */; };
 		186D89C724DA0C8D00D22A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186D89C524DA0C8D00D22A46 /* LaunchScreen.storyboard */; };
 		186D89D224DA0C8D00D22A46 /* pairsessiononeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89D124DA0C8D00D22A46 /* pairsessiononeTests.swift */; };
@@ -19,6 +19,7 @@
 		186D89F124DA0DCE00D22A46 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D89F024DA0DCE00D22A46 /* NetworkProvider.swift */; };
 		1C2E679024E222A400D397F5 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E678F24E222A400D397F5 /* NetworkLayer.swift */; };
 		1C8FE7E124E34F020071C134 /* MusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8FE7E024E34F020071C134 /* MusicCollectionViewCell.swift */; };
+		52CEC59224EC8AF10018D4F9 /* MusicSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEC59124EC8AF10018D4F9 /* MusicSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,7 @@
 		186D89B724DA0C8A00D22A46 /* pairsessionone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pairsessionone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		186D89BA24DA0C8A00D22A46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		186D89BC24DA0C8A00D22A46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		186D89BE24DA0C8A00D22A46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		186D89BE24DA0C8A00D22A46 /* MusicSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSearchViewModel.swift; sourceTree = "<group>"; };
 		186D89C324DA0C8D00D22A46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		186D89C624DA0C8D00D22A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		186D89C824DA0C8D00D22A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		186D89F024DA0DCE00D22A46 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		1C2E678F24E222A400D397F5 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		1C8FE7E024E34F020071C134 /* MusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionViewCell.swift; sourceTree = "<group>"; };
+		52CEC59124EC8AF10018D4F9 /* MusicSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +114,7 @@
 				186D89EA24DA0CA500D22A46 /* codable */,
 				186D89BA24DA0C8A00D22A46 /* AppDelegate.swift */,
 				186D89BC24DA0C8A00D22A46 /* SceneDelegate.swift */,
-				186D89BE24DA0C8A00D22A46 /* ViewController.swift */,
+				186D89BE24DA0C8A00D22A46 /* MusicSearchViewModel.swift */,
 				186D89C324DA0C8D00D22A46 /* Assets.xcassets */,
 				186D89C524DA0C8D00D22A46 /* LaunchScreen.storyboard */,
 				186D89C824DA0C8D00D22A46 /* Info.plist */,
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				1C8FE7DF24E34EE20071C134 /* Cell */,
+				52CEC59124EC8AF10018D4F9 /* MusicSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,7 +307,8 @@
 			files = (
 				1C8FE7E124E34F020071C134 /* MusicCollectionViewCell.swift in Sources */,
 				1C2E679024E222A400D397F5 /* NetworkLayer.swift in Sources */,
-				186D89BF24DA0C8A00D22A46 /* ViewController.swift in Sources */,
+				186D89BF24DA0C8A00D22A46 /* MusicSearchViewModel.swift in Sources */,
+				52CEC59224EC8AF10018D4F9 /* MusicSearchView.swift in Sources */,
 				186D89BB24DA0C8A00D22A46 /* AppDelegate.swift in Sources */,
 				186D89ED24DA0CB300D22A46 /* Results.swift in Sources */,
 				186D89EE24DA0CB300D22A46 /* SearchResult.swift in Sources */,

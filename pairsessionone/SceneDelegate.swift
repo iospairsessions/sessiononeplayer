@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let musicSearchVC = MusicSearchViewController()
-        let rootViewController = UINavigationController(rootViewController: musicSearchVC)
-        window.rootViewController = rootViewController
+        
+        window.rootViewController = UIHostingController(rootView: MusicSearchView())
         window.makeKeyAndVisible()
         self.window = window
     }
