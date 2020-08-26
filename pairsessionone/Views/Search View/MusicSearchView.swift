@@ -19,11 +19,8 @@ struct MusicSearchView: View {
                 MusicSearchBar(searchText: self.$viewModel.searchText)
                 
                 List(self.viewModel.datasource) { result in
-                    Text(result.trackName ?? "")
-                        .onTapGesture {
-                            if let url = result.previewUrl {
-                                self.viewModel.playPreview(url: url)
-                            }
+                    NavigationLink(destination: PlayerView(track: result)) {
+                        Text(result.trackName ?? "")
                     }
                 }
             }

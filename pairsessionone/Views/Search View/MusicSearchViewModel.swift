@@ -16,8 +16,6 @@ class MusicSearchViewModel: ObservableObject {
         case songs
     }
     
-    var player = AVPlayer()
-    
     var cancellables: Set<AnyCancellable> = .init()
     
     @Published var datasource: [Results] = []
@@ -29,15 +27,6 @@ class MusicSearchViewModel: ObservableObject {
             self.handleSearchs(with: newValue)
         }.store(in: &cancellables)
     }
-
-    func playPreview(url: String?) {
-        guard let pathURL = url, let remoteURL = URL(string: pathURL) else { return }
-        let playerItem = AVPlayerItem(url: remoteURL)
-        player = AVPlayer(playerItem:playerItem)
-        player.rate = 1.0
-        player.volume = 0.2
-        player.play()
-    }
     
     private func handleSearchs(with query: String) {
         NetworkLayer.request(provider: .searchMusic(query: query)) { (result: Result<SearchResult, Error>)  in
@@ -45,7 +34,6 @@ class MusicSearchViewModel: ObservableObject {
             case .success(let searchResult):
                 print(searchResult)
                 self.datasource = searchResult.tracks ?? []
-//                self.playPreview(url: searchResult.tracks?.first?.previewUrl)
             case .failure(let error):
                 print(error.localizedDescription)
             }
